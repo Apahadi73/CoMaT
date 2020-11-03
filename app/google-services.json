@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "773327559666",
+    "firebase_url": "https://comat-f3c31.firebaseio.com",
+    "project_id": "comat-f3c31",
+    "storage_bucket": "comat-f3c31.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:773327559666:android:1471dea76073921207296b",
+        "android_client_info": {
+          "package_name": "com.example.comat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "773327559666-eib8gg6drhf6ll6ejsuna88g7eru20ne.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBam16LrULvGtlwGE-2HfdOPNQ9df8Pjug"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "773327559666-eib8gg6drhf6ll6ejsuna88g7eru20ne.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
