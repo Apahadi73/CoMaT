@@ -3,25 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_conferences">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="com.example.comat.ui.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/nav_conferences"
+        android:name="com.example.comat.ui.conferences.ConferencesFragment"
+        android:label="Conferences"
+        tools:layout="@layout/fragment_conferences" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.comat.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_new_conference"
+        android:name="com.example.comat.ui.new_conference.NewConferenceFragment"
+        android:label="New Conference"
+        tools:layout="@layout/fragment_new_conference" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.comat.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/my_conferences"
+        android:name="com.example.comat.ui.my_conferences.MyConferencesFragment"
+        android:label="My Conferences"
+        tools:layout="@layout/fragment_my_conferences" />
     <activity
         android:id="@+id/loginActivity"
         android:name="com.example.comat.LoginActivity"

@@ -1,4 +1,4 @@
-package com.example.comat.ui.home
+package com.example.comat.ui.conferences
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.comat.R
 
-class HomeFragment : Fragment() {
+class ConferencesFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var conferencesViewModel: ConferencesViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        homeViewModel =
-                ViewModelProvider(this).get(HomeViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
+        conferencesViewModel =
+                ViewModelProvider(this).get(ConferencesViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_conferences, container, false)
         val textView: TextView = root.findViewById(R.id.text_home)
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
+        conferencesViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root

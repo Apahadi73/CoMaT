@@ -1,4 +1,4 @@
-package com.example.comat.ui.slideshow
+package com.example.comat.ui.new_conference
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.comat.R
 
-class SlideshowFragment : Fragment() {
+class NewConferenceFragment : Fragment() {
 
-    private lateinit var slideshowViewModel: SlideshowViewModel
+    private lateinit var newConferenceViewModel: NewConferenceViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        slideshowViewModel =
-                ViewModelProvider(this).get(SlideshowViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_slideshow, container, false)
-        val textView: TextView = root.findViewById(R.id.text_slideshow)
-        slideshowViewModel.text.observe(viewLifecycleOwner, Observer {
+        newConferenceViewModel =
+                ViewModelProvider(this).get(NewConferenceViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_new_conference, container, false)
+        val textView: TextView = root.findViewById(R.id.text_gallery)
+        newConferenceViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root

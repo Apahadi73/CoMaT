@@ -1,13 +1,13 @@
-package com.example.comat.ui.home
+package com.example.comat.ui.new_conference
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class HomeViewModel : ViewModel() {
+class NewConferenceViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+        value = "This is new conference Fragment"
     }
     val text: LiveData<String> = _text
 }
