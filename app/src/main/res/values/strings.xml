@@ -21,6 +21,11 @@
     <string name="welcome">"Welcome!"</string>
     <string name="invalid_email">Not a valid email</string>
     <string name="invalid_password">Password must be at least 6 characters</string>
+    <string name="invalid_conference_name">Conference name must be at least 4 characters</string>
+    <string name="invalid_conference_description">Conference description must be at least 10 characters</string>
+    <string name="invalid_conference_schedule">Conference schedule must be at least 10 characters</string>
+    <string name="invalid_conference_speakers">Conference speakers can not be empty</string>
+    <string name="invalid_conference_venue">Conference venue can not be empty</string>
     <string name="login_failed">"Login failed"</string>
     <string name="title_activity_login">Login</string>
     <string name="email">Email</string>

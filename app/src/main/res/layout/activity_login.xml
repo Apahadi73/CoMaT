@@ -37,6 +37,8 @@
                 android:inputType="textEmailAddress"
                 android:padding="16dp" />
 
+
+
             <EditText
                 android:id="@+id/userPassword"
                 android:layout_width="match_parent"

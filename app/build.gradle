@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.comat"
-        minSdkVersion 23
+        minSdkVersion 28
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -58,4 +58,5 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'com.basgeekball:awesome-validation:4.2'
+    implementation 'com.google.android.material:material:1.2.1'
 }

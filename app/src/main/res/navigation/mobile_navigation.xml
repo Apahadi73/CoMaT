@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_conferences">
+    app:startDestination="@+id/nav_new_conference">
 
     <fragment
         android:id="@+id/nav_conferences"
@@ -15,7 +15,11 @@
         android:id="@+id/nav_new_conference"
         android:name="com.example.comat.ui.new_conference.NewConferenceFragment"
         android:label="New Conference"
-        tools:layout="@layout/fragment_new_conference" />
+        tools:layout="@layout/fragment_new_conference" >
+        <action
+            android:id="@+id/action_nav_new_conference_to_nav_conferences"
+            app:destination="@id/nav_conferences" />
+    </fragment>
 
     <fragment
         android:id="@+id/my_conferences"
