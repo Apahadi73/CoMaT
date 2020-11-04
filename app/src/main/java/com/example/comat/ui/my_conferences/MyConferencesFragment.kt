@@ -26,6 +26,7 @@ class MyConferencesFragment : Fragment() {
         myConferencesViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
+
         return root
     }
 }

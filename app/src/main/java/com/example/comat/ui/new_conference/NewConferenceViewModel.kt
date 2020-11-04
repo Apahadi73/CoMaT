@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import com.example.comat.R
+import com.example.comat.models.Schedule
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -24,7 +25,7 @@ class NewConferenceViewModel : ViewModel() {
     }
     val navigate: LiveData<Boolean> = _navigate
 
-    fun createNewConference(context: Context, imageUri: Uri,name:String,description:String,date:String,schedule:String,speakers:String,venue:String): Unit {
+    fun createNewConference(context: Context, imageUri: Uri,name:String,description:String,date:String,schedule:ArrayList<Schedule>,speakers:String,venue:String): Unit {
         Log.d("reached", "reached")
         val user = FirebaseAuth.getInstance().currentUser
         val imageId: UUID = UUID.randomUUID()

@@ -101,20 +101,34 @@
 
             </LinearLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16sp"
-                android:layout_marginVertical="4sp"
-                android:hint="Schedule">
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="16sp">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/conf_schedule"
-                    android:layout_width="match_parent"
+                <Button
+                    android:id="@+id/add_schedule_btn"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:inputType="textMultiLine" />
+                    android:layout_gravity="center"
+                    android:text="ADD SCHEDULE" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+<!--                <androidx.appcompat.widget.AppCompatTextView-->
+<!--                    android:id="@+id/show_date"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center_vertical"-->
+<!--                    android:layout_marginVertical="4sp"-->
+<!--                    android:hint="Date"-->
+<!--                    android:textSize="18sp"-->
+<!--                    android:textStyle="bold" />-->
+
+            </LinearLayout>
+
+
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
