@@ -15,15 +15,22 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import java.util.*
 
 class NewConferenceViewModel : ViewModel() {
+
+    private val _navigate = MutableLiveData<Boolean>().apply {
+        value = false
+    }
+    val navigate: LiveData<Boolean> = _navigate
 
     fun createNewConference(context: Context, imageUri: Uri,name:String,description:String,date:String,schedule:String,speakers:String,venue:String): Unit {
         Log.d("reached", "reached")
         val user = FirebaseAuth.getInstance().currentUser
+        val imageId: UUID = UUID.randomUUID()
         val databaseReference = FirebaseDatabase.getInstance().reference
         val storageReference = FirebaseStorage.getInstance().reference;
-        val imageStorageBucketRef: StorageReference = storageReference.child("images/${user?.uid}")
+        val imageStorageBucketRef: StorageReference = storageReference.child("images/${imageId}")
 //        puts image into the firebase storage, fetches image download url and uploads the user profile to the backend
         imageStorageBucketRef.putFile(imageUri)
             .addOnSuccessListener { taskSnapshot -> // Get a URL to the uploaded content
@@ -32,16 +39,19 @@ class NewConferenceViewModel : ViewModel() {
                 downloadTask.addOnSuccessListener {
                     val imageDownloadUrl = it.toString()
                     Log.d("response", "downloadUrl:$imageDownloadUrl")
-                    val userDb = user?.uid?.let { it1 -> databaseReference.child("users").child(it1) }
+                    val conferenceId = UUID.randomUUID().toString()
+                    val userDb = user?.uid?.let { it1 -> databaseReference.child("users").child(it1).child("my_conferences").push() }
+                    val conferenceDb = databaseReference.child("conferences").child(conferenceId)
                     if (userDb != null) {
-                        userDb.child("name").setValue(name)
-                        userDb.child("description").setValue(description)
-                        userDb.child("date").setValue(date)
-                        userDb.child("schedule").setValue(schedule)
-                        userDb.child("speakers").setValue(speakers)
-                        userDb.child("venue").setValue(venue)
-                        userDb.child("logoUrl").setValue(imageDownloadUrl)
-                        NavController(context).navigate(R.id.action_nav_new_conference_to_nav_conferences)
+                        userDb.setValue(conferenceId)
+                        conferenceDb.child("name").setValue(name)
+                        conferenceDb.child("description").setValue(description)
+                        conferenceDb.child("date").setValue(date)
+                        conferenceDb.child("schedule").setValue(schedule)
+                        conferenceDb.child("speakers").setValue(speakers)
+                        conferenceDb.child("venue").setValue(venue)
+                        conferenceDb.child("logoUrl").setValue(imageDownloadUrl)
+                        _navigate.value = true
                     }
                 }
                 Log.d("response", "Successfully uploaded the data to firebase")
