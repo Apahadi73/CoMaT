@@ -12,8 +12,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import android.widget.Toast.*
+import android.widget.Toast.LENGTH_LONG
+import android.widget.Toast.makeText
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -22,6 +22,7 @@ import com.basgeekball.awesomevalidation.AwesomeValidation
 import com.basgeekball.awesomevalidation.ValidationStyle
 import com.basgeekball.awesomevalidation.utility.RegexTemplate
 import com.example.comat.R
+import com.example.comat.adapters.ScheduleAdapter
 import com.example.comat.databinding.FragmentNewConferenceBinding
 import com.example.comat.models.Schedule
 import kotlinx.android.synthetic.main.dialogue_add_schedule.*
@@ -39,12 +40,13 @@ class NewConferenceFragment : Fragment() {
     private var schedules = ArrayList<Schedule>()
     private var startTime = ""
     private var endTime = ""
+    private lateinit var adapter: ScheduleAdapter
 
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         newConferenceViewModel =
             ViewModelProvider(this).get(NewConferenceViewModel::class.java)
@@ -65,6 +67,9 @@ class NewConferenceFragment : Fragment() {
                 findNavController().navigate(R.id.action_nav_new_conference_to_nav_conferences)
             }
         })
+//        sets list view adapter for schedules
+        adapter = ScheduleAdapter(requireContext())
+        binding.scheduleListView.adapter = adapter
         return binding.root
     }
 
@@ -114,12 +119,13 @@ class NewConferenceFragment : Fragment() {
             var speakers = ""
             scheduleName = alertDialog.program_name.text.toString()
             speakers = alertDialog.speakers.text.toString()
-            val newSchedule = Schedule(startTime, endTime, scheduleName, speakers)
-            Log.d("newSchedule", newSchedule.toString())
-            schedules.add(newSchedule)
-            Log.d("schedules", schedules.toString())
             if (startTime != "" && endTime != "" && speakers != "" && scheduleName != "") {
+                val newSchedule = Schedule(startTime, endTime, scheduleName, speakers)
+                Log.d("newSchedule", newSchedule.toString())
+                schedules.add(newSchedule)
+                adapter.addToSchedule(newSchedule)
                 alertDialog.dismiss()
+
             } else {
                 alertDialog.errorView.text = "Please enter a valid schedule"
             }

@@ -108,6 +108,12 @@
                 android:orientation="vertical"
                 android:padding="16sp">
 
+                <ListView
+                    android:id="@+id/schedule_list_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="60sp"
+                    android:nestedScrollingEnabled="true" />
+
                 <Button
                     android:id="@+id/add_schedule_btn"
                     style="@style/Widget.MaterialComponents.Button.TextButton"
@@ -116,18 +122,8 @@
                     android:layout_gravity="center"
                     android:text="ADD SCHEDULE" />
 
-<!--                <androidx.appcompat.widget.AppCompatTextView-->
-<!--                    android:id="@+id/show_date"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_gravity="center_vertical"-->
-<!--                    android:layout_marginVertical="4sp"-->
-<!--                    android:hint="Date"-->
-<!--                    android:textSize="18sp"-->
-<!--                    android:textStyle="bold" />-->
 
             </LinearLayout>
-
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -144,6 +140,7 @@
                     android:inputType="textMultiLine" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -159,13 +156,13 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:layout_marginVertical="16sp"
-                android:layout_gravity="center"
                 android:id="@+id/create_conf"
-                android:padding="8sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginVertical="16sp"
                 android:background="@drawable/btn_custom"
+                android:padding="8sp"
                 android:text="CREATE CONFERENCE"
                 android:textColor="@android:color/white" />
 
