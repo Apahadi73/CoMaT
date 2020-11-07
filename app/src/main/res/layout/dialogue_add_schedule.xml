@@ -74,7 +74,7 @@
             android:text="PICK" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/schedule_time"
+            android:id="@+id/end_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -83,6 +83,11 @@
             android:textSize="16sp"
             android:textStyle="bold" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/errorView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/add_new_schedule"

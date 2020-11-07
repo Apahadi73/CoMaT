@@ -8,11 +8,11 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.text.format.DateFormat
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import android.widget.Toast.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -37,6 +37,9 @@ class NewConferenceFragment : Fragment() {
     private var dateString: String? = null
     private var isLogoPicked: Boolean = false
     private var schedules = ArrayList<Schedule>()
+    private var startTime = ""
+    private var endTime = ""
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -71,48 +74,56 @@ class NewConferenceFragment : Fragment() {
         val dialogBuilder =
             AlertDialog.Builder(context).setView(dialogView).setTitle("ADD SCHEDULE")
         val alertDialog = dialogBuilder.show()
-        var startTime = ""
-        var endTime = ""
+//        picks start time
         alertDialog.pick_start_time.setOnClickListener {
-           startTime =  pickTime(context)
-            alertDialog.start_time.text = startTime
+            val calendar = Calendar.getInstance()
+            val hour = calendar.get(Calendar.HOUR_OF_DAY)
+            val minute = calendar.get(Calendar.MINUTE)
+            val timePickerDialog = TimePickerDialog(
+                context,
+                TimePickerDialog.OnTimeSetListener { _, mHour, mMinute ->
+                    startTime = "$mHour:$mMinute"
+                    alertDialog.start_time.text = startTime
+                },
+                hour,
+                minute,
+                true
+            )
+            timePickerDialog.show()
         }
+//        picks end time
         alertDialog.pick_end_time.setOnClickListener {
-           endTime =  pickTime(context)
-            alertDialog.start_time.text = endTime
+            val calendar = Calendar.getInstance()
+            val hour = calendar.get(Calendar.HOUR_OF_DAY)
+            val minute = calendar.get(Calendar.MINUTE)
+            val timePickerDialog = TimePickerDialog(
+                context,
+                TimePickerDialog.OnTimeSetListener { _, mHour, mMinute ->
+                    endTime = "$mHour:$mMinute"
+                    alertDialog.end_time.text = endTime
+                },
+                hour,
+                minute,
+                true
+            )
+            timePickerDialog.show()
         }
+//        adds schedule to the conference schedule list
         alertDialog.add_new_schedule.setOnClickListener {
-            val scheduleName = alertDialog.program_name.text.toString()
-            val speakers = alertDialog.speakers.text.toString()
-            schedules.add(Schedule(startTime,endTime,scheduleName,speakers))
+            var scheduleName = ""
+            var speakers = ""
+            scheduleName = alertDialog.program_name.text.toString()
+            speakers = alertDialog.speakers.text.toString()
+            val newSchedule = Schedule(startTime, endTime, scheduleName, speakers)
+            Log.d("newSchedule", newSchedule.toString())
+            schedules.add(newSchedule)
             Log.d("schedules", schedules.toString())
-            alertDialog.dismiss()
+            if (startTime != "" && endTime != "" && speakers != "" && scheduleName != "") {
+                alertDialog.dismiss()
+            } else {
+                alertDialog.errorView.text = "Please enter a valid schedule"
+            }
         }
-        alertDialog.schedule_time.text = startTime
-    }
-
-
-//    todo: work here
-    private fun pickTime(context: Context?): String {
-        var time =""
-        val calendar = Calendar.getInstance()
-
-        val timePickerDialog = TimePickerDialog(
-            context,
-            TimePickerDialog.OnTimeSetListener { _, mHour, mMinute ->
-                val hour = calendar.get(Calendar.HOUR_OF_DAY)
-                val minute = calendar.get(Calendar.MINUTE)
-                calendar.set(0, 0, 0, hour, minute)
-                time =
-                    DateFormat.format("hh:mm aa", mHour,) as String
-                Log.d("time",time)
-            },
-            12,
-            0,
-            true
-        )
-        timePickerDialog.show()
-        return time
     }
 
 
