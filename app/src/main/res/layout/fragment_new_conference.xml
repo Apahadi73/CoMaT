@@ -131,21 +131,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16sp"
                 android:layout_marginVertical="4sp"
-                android:hint="Speakers">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/conf_speakers"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textMultiLine" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16sp"
-                android:layout_marginVertical="4sp"
                 android:hint="Venue">
 
                 <com.google.android.material.textfield.TextInputEditText

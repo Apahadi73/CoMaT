@@ -18,7 +18,7 @@ import com.example.comat.models.Schedule
 class ScheduleAdapter(
     private val context: Context,
 ) : BaseAdapter() {
-    private val schedules = ArrayList<Schedule>()
+    val schedules = ArrayList<Schedule>()
 
     fun addToSchedule(newSchedule: Schedule): Unit {
         schedules.add(newSchedule)

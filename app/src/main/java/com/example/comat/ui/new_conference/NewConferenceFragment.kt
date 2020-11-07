@@ -41,6 +41,7 @@ class NewConferenceFragment : Fragment() {
     private var startTime = ""
     private var endTime = ""
     private lateinit var adapter: ScheduleAdapter
+    private var confSpeakers = ""
 
 
     override fun onCreateView(
@@ -119,6 +120,7 @@ class NewConferenceFragment : Fragment() {
             var speakers = ""
             scheduleName = alertDialog.program_name.text.toString()
             speakers = alertDialog.speakers.text.toString()
+            confSpeakers+= "$speakers, "
             if (startTime != "" && endTime != "" && speakers != "" && scheduleName != "") {
                 val newSchedule = Schedule(startTime, endTime, scheduleName, speakers)
                 Log.d("newSchedule", newSchedule.toString())
@@ -159,9 +161,8 @@ class NewConferenceFragment : Fragment() {
                             binding.conferenceName.text.toString(),
                             binding.conferenceDescription.text.toString(),
                             dateString!!,
-//                            todo: modify here
-                            ArrayList<Schedule>(),
-                            binding.confSpeakers.text.toString(),
+                            adapter.schedules,
+                            confSpeakers,
                             binding.confVenue.text.toString(),
                         )
                     }
@@ -185,12 +186,6 @@ class NewConferenceFragment : Fragment() {
             R.id.conference_description,
             ".{10,}",
             R.string.invalid_conference_description
-        )
-        validator.addValidation(
-            activity,
-            R.id.conf_speakers,
-            RegexTemplate.NOT_EMPTY,
-            R.string.invalid_conference_speakers
         )
         validator.addValidation(
             activity,
