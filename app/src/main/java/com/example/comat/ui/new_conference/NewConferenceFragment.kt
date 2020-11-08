@@ -89,7 +89,7 @@ class NewConferenceFragment : Fragment() {
             val timePickerDialog = TimePickerDialog(
                 context,
                 TimePickerDialog.OnTimeSetListener { _, mHour, mMinute ->
-                    startTime = "$mHour:$mMinute"
+                    startTime = " Starts At: $mHour:$mMinute"
                     alertDialog.start_time.text = startTime
                 },
                 hour,
@@ -106,7 +106,7 @@ class NewConferenceFragment : Fragment() {
             val timePickerDialog = TimePickerDialog(
                 context,
                 TimePickerDialog.OnTimeSetListener { _, mHour, mMinute ->
-                    endTime = "$mHour:$mMinute"
+                    endTime = "Ends At: $mHour:$mMinute"
                     alertDialog.end_time.text = endTime
                 },
                 hour,
