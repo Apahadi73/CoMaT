@@ -10,53 +10,6 @@ import com.example.comat.databinding.ScheduleItemBinding
 import com.example.comat.models.Conference
 import com.squareup.picasso.Picasso
 
-//
-//class ConferencesListAdapter(private val clickListener: ConferenceClickListner) :
-//    ListAdapter<ConferencePage, ConferencesListAdapter.ConferenceViewHolder>(ConferenceDiffCallback()) {
-//
-//    override fun onCreateViewHolder(
-//        parent: ViewGroup,
-//        viewType: Int,
-//    ): ConferenceViewHolder {
-//        return ConferenceViewHolder.from(parent)
-//    }
-//
-//    override fun onBindViewHolder(
-//        holder: ConferenceViewHolder,
-//        position: Int,
-//    ) {
-//        holder.bind(getItem(position)!!,clickListener)
-//    }
-//
-//    class ConferenceViewHolder private constructor(val binding: ConferenceItemBinding) :
-//        RecyclerView.ViewHolder(binding.root) {
-//
-//        fun bind(
-//            currentItem: ConferencePage?,
-//            clickListener: ConferenceClickListner,
-//        ) { //        downloads and populate imageview with user image from firebase image storage
-//            if (currentItem != null) {
-//                Picasso.get().load(currentItem.logoUrl).into(binding.logoView)
-//
-//                binding.learnMoreListner = clickListener
-//            }
-//        }
-//
-//        companion object {
-//            fun from(
-//                parent: ViewGroup,
-//            ): ConferencesListAdapter.ConferenceViewHolder {
-//                val layoutInflater = LayoutInflater.from(parent.context)
-//                val binding = ConferenceItemBinding.inflate(layoutInflater, parent, false)
-//                return ConferencesListAdapter.ConferenceViewHolder(binding)
-//            }
-//        }
-//    }
-//
-//}
-//
-
-
 class ConferencesListAdapter(private val clickListener: ConferenceClickListner) :
     ListAdapter<Conference, ConferencesListAdapter.ConferenceViewHolder>(ConferenceListDiffCallback()) {
 

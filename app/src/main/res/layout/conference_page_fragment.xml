@@ -1,21 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="conference"
+            type="com.example.comat.models.Conference" />
     </data>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.ui_shared.ConferencePage">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/conference_id"
+
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Conference Page" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16sp"
+            tools:context=".ui.ui_shared.ConferencePage">
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10sp"
+                android:layout_marginTop="16sp"
+                android:elevation="0sp"
+                app:cardCornerRadius="25sp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/logo_view"
+                    android:layout_width="100sp"
+                    android:layout_height="100sp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_profile" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/conference_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="8sp"
+                android:text="@{conference.component5()}"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="8sp"
+                android:text="Description"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/conf_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="8sp"
+                android:text="@{conference.component6()}"
+                android:textSize="16sp"
+                android:textStyle="italic" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="8sp"
+                android:text="Date"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/conf_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="8sp"
+                android:text="@{conference.component1()}"
+                android:textSize="16sp"
+                android:textStyle="italic" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="8sp"
+                android:text="Schedules"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <ListView
+                android:id="@+id/schedule_list_view"
+                android:layout_width="match_parent"
+                android:layout_height="60sp"
+                android:nestedScrollingEnabled="true" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="8sp"
+                android:text="Speakers"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/conf_speakers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="8sp"
+                android:text="@{conference.component4()}"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="8sp"
+                android:text="Venue"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/conf_venue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32sp"
+                android:paddingVertical="8sp"
+                android:text="@{conference.component3()}"
+                android:textSize="16sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/create_conf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginVertical="16sp"
+                android:background="@drawable/btn_custom"
+                android:padding="8sp"
+                android:text="ENROLL"
+                android:textColor="@android:color/white" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </ScrollView>
 </layout>

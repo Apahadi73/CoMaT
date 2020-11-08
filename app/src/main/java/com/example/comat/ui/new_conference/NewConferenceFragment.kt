@@ -69,6 +69,7 @@ class NewConferenceFragment : Fragment() {
                 findNavController().navigate(R.id.action_nav_new_conference_to_my_conferences)
             }
         })
+
 //        sets list view adapter for schedules
         adapter = ScheduleAdapter(requireContext())
         binding.scheduleListView.adapter = adapter

@@ -18,12 +18,19 @@ import com.example.comat.models.Schedule
 class ScheduleAdapter(
     private val context: Context,
 ) : BaseAdapter() {
-    val schedules = arrayListOf<Schedule>(Schedule("start","end","program","speakers"))
+    var schedules = arrayListOf<Schedule>(Schedule("start","end","program","speakers"))
 
     fun addToSchedule(newSchedule: Schedule): Unit {
         schedules.add(newSchedule)
         Log.d("schedule_new", schedules.toString())
         notifyDataSetChanged()
+    }
+
+    fun fillSchedule(scheduleList:ArrayList<Schedule>){
+        schedules = ArrayList<Schedule>()
+        for (schedule in scheduleList){
+            schedules.add(schedule)
+        }
     }
     private val inflater: LayoutInflater =
         context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater

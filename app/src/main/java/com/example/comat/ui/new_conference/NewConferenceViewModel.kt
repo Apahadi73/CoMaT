@@ -59,7 +59,7 @@ class NewConferenceViewModel : ViewModel() {
                         conferenceDb.child("venue").setValue(venue)
                         conferenceDb.child("logoUrl").setValue(imageDownloadUrl)
                         conferenceDb.child("creator").setValue(currentUser)
-                        conferenceDb.child("conference_id").setValue(UUID.randomUUID().toString())
+                        conferenceDb.child("conference_id").setValue(conferenceId)
                         _navigate.value = true
                     }
                 }

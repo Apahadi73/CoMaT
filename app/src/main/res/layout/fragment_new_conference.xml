@@ -151,6 +151,8 @@
                 android:text="CREATE CONFERENCE"
                 android:textColor="@android:color/white" />
 
+
+
         </androidx.appcompat.widget.LinearLayoutCompat>
     </ScrollView>
 </layout>
