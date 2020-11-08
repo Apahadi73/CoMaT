@@ -9,7 +9,11 @@
         android:id="@+id/nav_conferences"
         android:name="com.example.comat.ui.conferences.ConferencesFragment"
         android:label="Conferences"
-        tools:layout="@layout/fragment_conferences" />
+        tools:layout="@layout/fragment_conferences" >
+        <action
+            android:id="@+id/action_nav_conferences_to_conference"
+            app:destination="@id/conference" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_new_conference"
@@ -25,7 +29,11 @@
         android:id="@+id/my_conferences"
         android:name="com.example.comat.ui.my_conferences.MyConferencesFragment"
         android:label="My Conferences"
-        tools:layout="@layout/fragment_my_conferences" />
+        tools:layout="@layout/fragment_my_conferences" >
+        <action
+            android:id="@+id/action_my_conferences_to_conference"
+            app:destination="@id/conference" />
+    </fragment>
     <activity
         android:id="@+id/loginActivity"
         android:name="com.example.comat.LoginActivity"
@@ -34,4 +42,13 @@
         android:id="@+id/signupActivity"
         android:name="com.example.comat.SignupActivity"
         android:label="SignupActivity" />
+    <fragment
+        android:id="@+id/conference"
+        android:name="com.example.comat.ui.ui_shared.ConferencePage"
+        android:label="Conference"
+        tools:layout="@layout/conference_page_fragment">
+        <argument
+            android:name="conferenceId"
+            app:argType="string" />
+    </fragment>
 </navigation>

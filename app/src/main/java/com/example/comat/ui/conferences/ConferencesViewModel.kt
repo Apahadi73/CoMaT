@@ -47,6 +47,7 @@ class ConferencesViewModel : ViewModel() {
                         val name = conference.child("name").value.toString()
                         val logoUrl = conference.child("logoUrl").value.toString()
                         val creatorId = conference.child("creator").value.toString()
+                        val conferenceId = conference.child("conference_id").value.toString()
                         Log.d("results", conference.value.toString())
                         for (schedule in conferences.child("schedule").children) {
                             val start = schedule.child("start").value.toString()
@@ -64,6 +65,7 @@ class ConferencesViewModel : ViewModel() {
                             name,
                             description,
                             logoUrl, creatorId,
+                            conferenceId
                         )
                     }
                 }

@@ -167,7 +167,7 @@ class NewConferenceFragment : Fragment() {
                                 adapter.schedules,
                                 confSpeakers,
                                 binding.confVenue.text.toString(),
-                                user
+                                user,
                             )
                         }
                     }

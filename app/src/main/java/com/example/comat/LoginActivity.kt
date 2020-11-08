@@ -1,6 +1,5 @@
 package com.example.comat
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -48,7 +47,7 @@ class LoginActivity : AppCompatActivity() {
 
         binding.buttonLogin.setOnClickListener {
             if(validation.validate()){
-               loginUser(this)
+               loginUser()
             }
             else {
                 makeText(this, "Form invalid", Toast.LENGTH_LONG)
@@ -57,7 +56,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
 
-    private fun loginUser(context: Context): Unit {
+    private fun loginUser(): Unit {
         val auth = FirebaseAuth.getInstance()
         val email = binding.userEmail.text.toString()
         val password = binding.userPassword.text.toString()
