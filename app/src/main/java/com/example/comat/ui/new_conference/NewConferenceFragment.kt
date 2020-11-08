@@ -25,6 +25,7 @@ import com.example.comat.R
 import com.example.comat.adapters.ScheduleAdapter
 import com.example.comat.databinding.FragmentNewConferenceBinding
 import com.example.comat.models.Schedule
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.dialogue_add_schedule.*
 import java.util.*
 import kotlin.collections.ArrayList
@@ -65,7 +66,7 @@ class NewConferenceFragment : Fragment() {
 
         newConferenceViewModel.navigate.observe(viewLifecycleOwner, {
             if (it) {
-                findNavController().navigate(R.id.action_nav_new_conference_to_nav_conferences)
+                findNavController().navigate(R.id.action_nav_new_conference_to_my_conferences)
             }
         })
 //        sets list view adapter for schedules
@@ -120,7 +121,7 @@ class NewConferenceFragment : Fragment() {
             var speakers = ""
             scheduleName = alertDialog.program_name.text.toString()
             speakers = alertDialog.speakers.text.toString()
-            confSpeakers+= "$speakers, "
+            confSpeakers += ", $speakers"
             if (startTime != "" && endTime != "" && speakers != "" && scheduleName != "") {
                 val newSchedule = Schedule(startTime, endTime, scheduleName, speakers)
                 Log.d("newSchedule", newSchedule.toString())
@@ -146,6 +147,7 @@ class NewConferenceFragment : Fragment() {
 
     //    creates new conference
     private fun createNewConference(validator: AwesomeValidation) {
+        val user = FirebaseAuth.getInstance().currentUser?.uid
         binding.createConf.setOnClickListener {
             Log.d("reached", "button clicked")
             if (validator.validate()) {
@@ -155,16 +157,19 @@ class NewConferenceFragment : Fragment() {
                     makeText(context, "Please pick a date", LENGTH_LONG)
                 } else {
                     activity?.applicationContext?.let {
-                        newConferenceViewModel.createNewConference(
-                            it,
-                            imageURI,
-                            binding.conferenceName.text.toString(),
-                            binding.conferenceDescription.text.toString(),
-                            dateString!!,
-                            adapter.schedules,
-                            confSpeakers,
-                            binding.confVenue.text.toString(),
-                        )
+                        if (user != null) {
+                            newConferenceViewModel.createNewConference(
+                                it,
+                                imageURI,
+                                binding.conferenceName.text.toString(),
+                                binding.conferenceDescription.text.toString(),
+                                dateString!!,
+                                adapter.schedules,
+                                confSpeakers,
+                                binding.confVenue.text.toString(),
+                                user
+                            )
+                        }
                     }
                 }
             }

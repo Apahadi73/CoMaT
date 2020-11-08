@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_new_conference">
+    app:startDestination="@id/nav_conferences">
 
     <fragment
         android:id="@+id/nav_conferences"
@@ -17,8 +17,8 @@
         android:label="New Conference"
         tools:layout="@layout/fragment_new_conference" >
         <action
-            android:id="@+id/action_nav_new_conference_to_nav_conferences"
-            app:destination="@id/nav_conferences" />
+            android:id="@+id/action_nav_new_conference_to_my_conferences"
+            app:destination="@id/my_conferences" />
     </fragment>
 
     <fragment
