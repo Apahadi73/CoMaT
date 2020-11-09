@@ -1,7 +1,6 @@
 package com.example.comat.ui.ui_shared
 
 import android.util.Log
-import androidx.core.content.contentValuesOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -21,6 +20,11 @@ class ConferencePageViewModel : ViewModel() {
 
     }
     val conference: LiveData<Conference> = _conference
+
+    private var _isEnrolled = MutableLiveData<Boolean>().apply {
+
+    }
+    val isEnrolled: LiveData<Boolean> = _isEnrolled
 
     fun fetchConferenceData(conferenceId: String): Unit {
         var selectedConference = Conference("", ArrayList(), "", "", "", "", "", "", "")
@@ -74,9 +78,16 @@ class ConferencePageViewModel : ViewModel() {
         database.addValueEventListener(valueListner)
     }
 
-    fun enroll(): Unit {
-        val user = FirebaseAuth.getInstance().currentUser?.uid
+    //    enrolls user into the conference
+    fun enroll(conferenceId: String): Unit {
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
         val databaseReference = FirebaseDatabase.getInstance().reference
+        val conference = databaseReference.child("conferences").child(conferenceId)
+        val userDb = userId?.let { databaseReference.child("users").child(it) }
+        conference.child("enrolled_users").push().setValue(userId)
+        userDb?.child("enrolled")?.push()?.setValue(conferenceId).also {
+            _isEnrolled.value = true
+        }
 
     }
 }

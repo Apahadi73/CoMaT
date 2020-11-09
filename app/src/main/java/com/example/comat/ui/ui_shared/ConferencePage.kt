@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import com.example.comat.R
 import com.example.comat.adapters.ScheduleAdapter
 import com.example.comat.databinding.ConferencePageFragmentBinding
@@ -46,8 +47,16 @@ class ConferencePage : Fragment() {
                 binding.scheduleListView.adapter = adapter
             })
         }
-        //        sets list view adapter for schedules
-
+        binding.enrollBtn.setOnClickListener {
+            if (conferenceId != null) {
+                conferencePageViewModel.enroll(conferenceId)
+            }
+        }
+        conferencePageViewModel.isEnrolled.observe(viewLifecycleOwner,{
+            if(it==true){
+                findNavController().navigate(R.id.action_conference_to_nav_conferences)
+            }
+        })
         return binding.root
     }
 

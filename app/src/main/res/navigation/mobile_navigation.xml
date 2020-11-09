@@ -50,5 +50,8 @@
         <argument
             android:name="conferenceId"
             app:argType="string" />
+        <action
+            android:id="@+id/action_conference_to_nav_conferences"
+            app:destination="@id/nav_conferences" />
     </fragment>
 </navigation>
