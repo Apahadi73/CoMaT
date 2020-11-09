@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/my_conferences">
+    app:startDestination="@id/enrolledConference">
 
     <fragment
         android:id="@+id/nav_conferences"
@@ -71,4 +71,8 @@
             android:id="@+id/action_updateConference_to_my_conferences"
             app:destination="@id/my_conferences" />
     </fragment>
+    <fragment
+        android:id="@+id/enrolledConference"
+        android:name="com.example.comat.ui.enrolled_conference.EnrolledConference"
+        android:label="Enrolled Conferences" />
 </navigation>

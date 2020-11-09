@@ -37,7 +37,6 @@ class MyConferencesFragment : Fragment() {
             DataBindingUtil.inflate(inflater, R.layout.fragment_my_conferences, container, false)
         myConferencesViewModel.fetchUserData()
         val adapter = ConferencesListAdapter(ConferenceClickListner { conferenceId ->
-            Log.d("clicked","clicked")
             findNavController().navigate(MyConferencesFragmentDirections.actionMyConferencesToConference(conferenceId))
 
         })

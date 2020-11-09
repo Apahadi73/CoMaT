@@ -16,5 +16,9 @@
             android:id="@+id/my_conferences"
             android:icon="@drawable/ic_my_conf"
             android:title="My Conferences" />
+        <item
+            android:id="@+id/enrolledConference"
+            android:icon="@drawable/ic_my_conf"
+            android:title="Enrolled Conferences" />
     </group>
 </menu>
