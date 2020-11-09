@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/nav_conferences">
+    app:startDestination="@id/my_conferences">
 
     <fragment
         android:id="@+id/nav_conferences"
@@ -18,11 +18,14 @@
     <fragment
         android:id="@+id/nav_new_conference"
         android:name="com.example.comat.ui.new_conference.NewConferenceFragment"
-        android:label="New Conference"
-        tools:layout="@layout/fragment_new_conference" >
+        tools:layout="@layout/fragment_new_conference">
         <action
             android:id="@+id/action_nav_new_conference_to_my_conferences"
             app:destination="@id/my_conferences" />
+        <argument
+            android:name="conferenceId"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
 
     <fragment
@@ -53,5 +56,19 @@
         <action
             android:id="@+id/action_conference_to_nav_conferences"
             app:destination="@id/nav_conferences" />
+        <action
+            android:id="@+id/action_conference_to_updateConference"
+            app:destination="@id/updateConference" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateConference"
+        android:name="com.example.comat.ui.update_conference.UpdateConference"
+        android:label="UpdateConference" >
+        <argument
+            android:name="conferenceId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_updateConference_to_my_conferences"
+            app:destination="@id/my_conferences" />
     </fragment>
 </navigation>

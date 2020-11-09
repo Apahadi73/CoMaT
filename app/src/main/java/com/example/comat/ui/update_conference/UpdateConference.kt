@@ -1,4 +1,4 @@
-package com.example.comat.ui.new_conference
+package com.example.comat.ui.update_conference
 
 import android.app.Activity
 import android.app.AlertDialog
@@ -7,16 +7,15 @@ import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.Log
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast.LENGTH_LONG
-import android.widget.Toast.makeText
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.basgeekball.awesomevalidation.AwesomeValidation
 import com.basgeekball.awesomevalidation.ValidationStyle
@@ -24,6 +23,7 @@ import com.basgeekball.awesomevalidation.utility.RegexTemplate
 import com.example.comat.R
 import com.example.comat.adapters.ScheduleAdapter
 import com.example.comat.databinding.FragmentNewConferenceBinding
+import com.example.comat.databinding.UpdateConferenceFragmentBinding
 import com.example.comat.models.Schedule
 import com.example.comat.ui.ui_shared.ConferencePageArgs
 import com.google.firebase.auth.FirebaseAuth
@@ -31,11 +31,11 @@ import kotlinx.android.synthetic.main.dialogue_add_schedule.*
 import java.util.*
 import kotlin.collections.ArrayList
 
-class NewConferenceFragment : Fragment() {
+class UpdateConference : Fragment() {
 
-    private lateinit var newConferenceViewModel: NewConferenceViewModel
+    private lateinit var updateConferenceViewModel: UpdateConferenceViewModel
     private var SELECT_PHOTO: Int = 1
-    private lateinit var binding: FragmentNewConferenceBinding
+    private lateinit var binding: UpdateConferenceFragmentBinding
     private lateinit var imageURI: Uri
     private var dateString: String? = null
     private var isLogoPicked: Boolean = false
@@ -44,6 +44,7 @@ class NewConferenceFragment : Fragment() {
     private var endTime = ""
     private lateinit var adapter: ScheduleAdapter
     private var confSpeakers = ""
+    private var conferenceId = ""
 
 
     override fun onCreateView(
@@ -51,23 +52,25 @@ class NewConferenceFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        newConferenceViewModel =
-            ViewModelProvider(this).get(NewConferenceViewModel::class.java)
+        updateConferenceViewModel =
+            ViewModelProvider(this).get(UpdateConferenceViewModel::class.java)
         binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_new_conference, container, false)
+            DataBindingUtil.inflate(inflater, R.layout.update_conference_fragment, container, false)
+        conferenceId = arguments?.let { ConferencePageArgs.fromBundle(it).conferenceId }.toString() ?: ""
+        Log.d("id",conferenceId)
 //        picks an image from user
         pickLogo()
 
         handlerDatePicker()
         val validator = handleDataValidation()
-        createNewConference(validator)
+        updateConference(validator)
         binding.addScheduleBtn.setOnClickListener {
             openDialog(context)
         }
 
-        newConferenceViewModel.navigate.observe(viewLifecycleOwner, {
+        updateConferenceViewModel.navigate.observe(viewLifecycleOwner, {
             if (it) {
-                findNavController().navigate(R.id.action_nav_new_conference_to_my_conferences)
+                findNavController().navigate(R.id.action_updateConference_to_my_conferences)
             }
         })
 
@@ -148,19 +151,19 @@ class NewConferenceFragment : Fragment() {
     }
 
     //    creates new conference
-    private fun createNewConference(validator: AwesomeValidation) {
+    private fun updateConference(validator: AwesomeValidation) {
         val user = FirebaseAuth.getInstance().currentUser?.uid
-        binding.createConf.setOnClickListener {
+        binding.updateBtn.setOnClickListener {
             Log.d("reached", "button clicked")
             if (validator.validate()) {
                 if (!isLogoPicked) {
-                    makeText(context, "Please pick a logo", LENGTH_LONG)
+                    Toast.makeText(context, "Please pick a logo", Toast.LENGTH_LONG)
                 } else if (dateString == null) {
-                    makeText(context, "Please pick a date", LENGTH_LONG)
+                    Toast.makeText(context, "Please pick a date", Toast.LENGTH_LONG)
                 } else {
                     activity?.applicationContext?.let {
                         if (user != null) {
-                            newConferenceViewModel.createNewConference(
+                            updateConferenceViewModel.updateConference(
                                 it,
                                 imageURI,
                                 binding.conferenceName.text.toString(),
@@ -170,6 +173,7 @@ class NewConferenceFragment : Fragment() {
                                 confSpeakers,
                                 binding.confVenue.text.toString(),
                                 user,
+                                conferenceId
                             )
                         }
                     }
@@ -239,4 +243,5 @@ class NewConferenceFragment : Fragment() {
             }
         }
     }
+
 }

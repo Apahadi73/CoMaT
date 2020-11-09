@@ -13,6 +13,7 @@ import com.example.comat.R
 import com.example.comat.adapters.ScheduleAdapter
 import com.example.comat.databinding.ConferencePageFragmentBinding
 import com.example.comat.ui.new_conference.NewConferenceViewModel
+import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 
 class ConferencePage : Fragment() {
@@ -45,11 +46,26 @@ class ConferencePage : Fragment() {
                 val adapter = ScheduleAdapter(requireContext())
                 adapter.fillSchedule(it.schedule)
                 binding.scheduleListView.adapter = adapter
+                val userId = FirebaseAuth.getInstance().currentUser?.uid
+                if(it.creatorId == userId){
+                    binding.updateBtn.visibility = View.VISIBLE
+                    binding.enrollBtn.visibility = View.GONE
+                }
+                else {
+                    binding.enrollBtn.visibility = View.VISIBLE
+                    binding.updateBtn.visibility = View.GONE
+                }
             })
         }
         binding.enrollBtn.setOnClickListener {
             if (conferenceId != null) {
                 conferencePageViewModel.enroll(conferenceId)
+            }
+        }
+
+        binding.updateBtn.setOnClickListener {
+            if(conferenceId!=null){
+                findNavController().navigate(ConferencePageDirections.actionConferenceToUpdateConference(conferenceId))
             }
         }
         conferencePageViewModel.isEnrolled.observe(viewLifecycleOwner,{
