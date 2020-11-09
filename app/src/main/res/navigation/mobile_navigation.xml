@@ -53,12 +53,17 @@
         <argument
             android:name="conferenceId"
             app:argType="string" />
+        <argument
+            android:name="isEnrolled"
+            app:argType="boolean"
+            android:defaultValue="false" />
         <action
             android:id="@+id/action_conference_to_nav_conferences"
             app:destination="@id/nav_conferences" />
         <action
             android:id="@+id/action_conference_to_updateConference"
             app:destination="@id/updateConference" />
+
     </fragment>
     <fragment
         android:id="@+id/updateConference"
@@ -74,5 +79,9 @@
     <fragment
         android:id="@+id/enrolledConference"
         android:name="com.example.comat.ui.enrolled_conference.EnrolledConference"
-        android:label="Enrolled Conferences" />
+        android:label="Enrolled Conferences" >
+        <action
+            android:id="@+id/action_enrolledConference_to_conference"
+            app:destination="@id/conference" />
+    </fragment>
 </navigation>

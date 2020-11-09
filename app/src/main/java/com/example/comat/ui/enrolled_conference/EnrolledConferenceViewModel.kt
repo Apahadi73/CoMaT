@@ -30,8 +30,8 @@ class EnrolledConferenceViewModel : ViewModel() {
                 val conferencesList = ArrayList<Conference>()
                 val conferences = dataSnapshot.child("conferences")
                 for (conference in conferences.children) {
-                    val enrolled_users = conference.child("enrolled_users")
-                    for (item in enrolled_users.children) {
+                    val enrolledUsers = conference.child("enrolled_users")
+                    for (item in enrolledUsers.children) {
                         val x = item.value.toString()
 //                    only fill the list with user created conference
                         if (x.contains(user.uid)) {

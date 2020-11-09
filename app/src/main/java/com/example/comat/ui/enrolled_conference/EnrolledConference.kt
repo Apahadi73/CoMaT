@@ -36,7 +36,7 @@ class EnrolledConference : Fragment() {
         viewModel = ViewModelProvider(this).get(EnrolledConferenceViewModel::class.java)
         viewModel.fetchUserData()
         val adapter = ConferencesListAdapter(ConferenceClickListner { conferenceId ->
-            findNavController().navigate(MyConferencesFragmentDirections.actionMyConferencesToConference(conferenceId))
+            findNavController().navigate(EnrolledConferenceDirections.actionEnrolledConferenceToConference(conferenceId))
 
         })
         binding.recyclerView.adapter = adapter

@@ -14,7 +14,7 @@
         tools:context=".ui.logged_in.home.HomeFragment">
 
         <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/conference_search_bar"
+            android:id="@+id/search_view"
             android:layout_width="match_parent"
             android:padding="16sp"
             android:layout_margin="8sp"
