@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -33,6 +34,9 @@ class ConferencesFragment : androidx.fragment.app.Fragment() {
             findNavController().navigate(ConferencesFragmentDirections.actionNavConferencesToConference(conferenceId))
         })
         binding.recyclerView.adapter = adapter
+        binding.searchView.addTextChangedListener {
+            conferencesViewModel.filter(it.toString())
+        }
         conferencesViewModel.conferenceList.observe(viewLifecycleOwner, {
             it.let {
                 adapter.submitList(it)

@@ -19,7 +19,20 @@ class ConferencesViewModel : ViewModel() {
 //        load empty array list to instantiate the message list live data
         value = ArrayList<Conference>()
     }
+
+    private var copyConferenceList = ArrayList<Conference>()
     val conferenceList = _conferenceList
+
+    //    filters the conference list
+    fun filter(query: String): Unit {
+        val conferencesList = ArrayList<Conference>()
+        for (conference in copyConferenceList){
+            if(conference.name.contains(query)){
+                conferencesList+=conference
+            }
+        }
+        _conferenceList.value = conferencesList
+    }
 
     //  fetches user name from cloud firestore and updates the profile view
     fun fetchUserData() {
@@ -66,12 +79,13 @@ class ConferencesViewModel : ViewModel() {
                             name,
                             description,
                             logoUrl, creatorId,
-                            conferenceId,host
+                            conferenceId, host
                         )
                     }
                 }
                 Log.d("conferences", conferencesList.toString())
-                _conferenceList.value=conferencesList
+                _conferenceList.value = conferencesList
+                copyConferenceList = conferencesList
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
