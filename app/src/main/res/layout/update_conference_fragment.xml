@@ -71,6 +71,21 @@
                     android:inputType="textMultiLine" />
 
             </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16sp"
+                android:layout_marginVertical="4sp"
+                android:hint="Host">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/conference_host"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

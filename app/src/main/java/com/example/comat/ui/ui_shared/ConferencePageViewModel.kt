@@ -16,7 +16,7 @@ class ConferencePageViewModel : ViewModel() {
     private lateinit var matchedConference: DataSnapshot
 
     private var _conference = MutableLiveData<Conference>().apply {
-        value = Conference("", ArrayList<Schedule>(), "", "", "", "", "", "", "")
+        value = Conference("", ArrayList<Schedule>(), "", "", "", "", "", "", "","")
 
     }
     val conference: LiveData<Conference> = _conference
@@ -27,7 +27,7 @@ class ConferencePageViewModel : ViewModel() {
     val isEnrolled: LiveData<Boolean> = _isEnrolled
 
     fun fetchConferenceData(conferenceId: String): Unit {
-        var selectedConference = Conference("", ArrayList(), "", "", "", "", "", "", "")
+        var selectedConference = Conference("", ArrayList(), "", "", "", "", "", "", "","")
         val database = FirebaseDatabase.getInstance().reference
         val valueListner = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot): Unit {
@@ -47,6 +47,7 @@ class ConferencePageViewModel : ViewModel() {
                         val logoUrl = conference.child("logoUrl").value.toString()
                         val creatorId = conference.child("creator").value.toString()
                         val conferenceId = conference.child("conference_id").value.toString()
+                        val host = conference.child("host").value.toString()
                         val schedules = conference.child("schedule").value as ArrayList<*>
                         for (x in schedules) {
                             val item = x as HashMap<*, *>
@@ -64,7 +65,8 @@ class ConferencePageViewModel : ViewModel() {
                             speakers,
                             name,
                             description,
-                            logoUrl, creatorId, conferenceId
+                            logoUrl, creatorId, conferenceId,
+                            host
                         )
                     }
                 }

@@ -25,7 +25,6 @@ import com.example.comat.R
 import com.example.comat.adapters.ScheduleAdapter
 import com.example.comat.databinding.FragmentNewConferenceBinding
 import com.example.comat.models.Schedule
-import com.example.comat.ui.ui_shared.ConferencePageArgs
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.dialogue_add_schedule.*
 import java.util.*
@@ -170,6 +169,7 @@ class NewConferenceFragment : Fragment() {
                                 confSpeakers,
                                 binding.confVenue.text.toString(),
                                 user,
+                                binding.conferenceHost.text.toString()
                             )
                         }
                     }

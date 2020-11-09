@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="conference"
             type="com.example.comat.models.Conference" />
@@ -63,6 +64,22 @@
                 android:text="@{conference.component6()}"
                 android:textSize="16sp"
                 android:textStyle="italic" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="8sp"
+                android:text="Host"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/conf_host"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="8sp"
+                android:text="@{conference.component10()}"
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -130,7 +147,6 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/enroll_btn"
-                android:visibility="invisible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -138,10 +154,11 @@
                 android:background="@drawable/btn_custom"
                 android:padding="8sp"
                 android:text="ENROLL"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:visibility="invisible" />
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/update_btn"
-                android:visibility="invisible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -149,7 +166,8 @@
                 android:background="@drawable/btn_custom"
                 android:padding="8sp"
                 android:text="UPDATE"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:visibility="invisible" />
 
 
         </androidx.appcompat.widget.LinearLayoutCompat>

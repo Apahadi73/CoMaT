@@ -173,7 +173,8 @@ class UpdateConference : Fragment() {
                                 confSpeakers,
                                 binding.confVenue.text.toString(),
                                 user,
-                                conferenceId
+                                conferenceId,
+                                binding.conferenceHost.text.toString()
                             )
                         }
                     }

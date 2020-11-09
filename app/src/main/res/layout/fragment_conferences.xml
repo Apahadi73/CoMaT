@@ -28,7 +28,7 @@
             android:padding="4sp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/conference_search_bar"
+            android:layout_below="@+id/search_view"
             tools:listitem="@layout/conference_item"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 

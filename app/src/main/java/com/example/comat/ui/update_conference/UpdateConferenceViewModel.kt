@@ -30,7 +30,8 @@ class UpdateConferenceViewModel : ViewModel() {
         speakers: String,
         venue: String,
         currentUser: String,
-        conferenceId:String
+        conferenceId:String,
+        host:String
     ): Unit {
         Log.d("reached", "reached")
         val user = FirebaseAuth.getInstance().currentUser
@@ -58,6 +59,7 @@ class UpdateConferenceViewModel : ViewModel() {
                         conferenceDb.child("logoUrl").setValue(imageDownloadUrl)
                         conferenceDb.child("creator").setValue(currentUser)
                         conferenceDb.child("conference_id").setValue(conferenceId)
+                        conferenceDb.child("host").setValue(host)
                         _navigate.value = true
                     }
                 }

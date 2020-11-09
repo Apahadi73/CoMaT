@@ -38,7 +38,7 @@ class ConferencesListAdapter(private val clickListener: ConferenceClickListner) 
                         currentItem.speakers,
                         currentItem.name,
                         currentItem.description,
-                        currentItem.logoUrl, currentItem.creatorId, currentItem.conferenceId
+                        currentItem.logoUrl, currentItem.creatorId, currentItem.conferenceId,currentItem.host
                     )
                 binding.learnMoreListner = clickListener
             }
